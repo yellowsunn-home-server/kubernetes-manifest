@@ -1,4 +1,4 @@
-name: Change container image tag
+name: Kustomize 이미지 태그 수정
 on:
   repository_dispatch:
     types: [change-image-tag]
