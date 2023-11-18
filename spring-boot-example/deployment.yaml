@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-example-deploy
+spec:
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: spring-boot-example
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
+  template:
+    metadata:
+      labels:
+        app: spring-boot-example
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/actuator/prometheus"
+    spec:
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: harbor-auth
+      containers:
+        - name: spring-boot-example
+          image: harbor.yellowsunn.com:80/test/spring-boot-example
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 100m
+              memory: 0.5Gi
+            limits:
+              cpu: 300m
+              memory: 0.75Gi
+          startupProbe:
+            httpGet:
+              scheme: HTTP
+              path: /graphiql?path=/graphql
+              port: 8080
+            initialDelaySeconds: 40
+            periodSeconds: 20
+          livenessProbe:
+            httpGet:
+              scheme: HTTP
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: dev
+            - name: JAVA_TOOL_OPTIONS
+              value: >-
+                -javaagent:/pinpoint-agent/pinpoint-bootstrap.jar
+                -Dpinpoint.applicationName=SPRING-BOOT-EXAMPLE
+                -Dpinpoint.agentId=springbootexample
+                -Dpinpoint.profiler.profiles.active=release
+          volumeMounts:
+            - mountPath: /logs
+              name: logback
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: logback
+          hostPath:
+            path: /var/log/logback/spring-boot-example
