@@ -1,0 +1,30 @@
+name: Change container image tag
+on:
+  repository_dispatch:
+    types: [change-image-tag]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Print Payload
+        run: |
+          echo ${{ github.event.client_payload.requested-event-path }}
+          echo "container-image=${{ github.event.client_payload.container-image }}" >> $GITHUB_ENV
+          echo "deployment-version=${{ github.event.client_payload.deployment-version }}" >> $GITHUB_ENV
+          echo "overlay-path=${{ github.event.client_payload.overlay-path }}" >> $GITHUB_ENV
+      - name: Setup Kustomize
+        uses: imranismail/setup-kustomize@v2
+      - name: Set git config
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+      - name: Change image tag
+        run: |
+          cd ${{ env.overlay-path }}
+          kustomize edit set image ${{ env.container-image }}:${{ env.deployment-version }}
+          git add .
+          git commit -m "[github-action] update image tag = ${{ env.container-image }}:${{ env.deployment-version }}"
+          git push
