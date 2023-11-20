@@ -17,5 +17,5 @@ patches:
       version: v2
       kind: HorizontalPodAutoscaler
 images:
-  - name: harbor.yellowsunn.com/prod/home-config-server
+  - name: harbor.yellowsunn.com:80/prod/home-config-server
     newTag: "20231119233137"

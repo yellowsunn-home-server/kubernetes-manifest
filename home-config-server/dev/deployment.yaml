@@ -9,4 +9,4 @@ spec:
     spec:
       containers:
         - name: home-config-server
-          image: harbor.yellowsunn.com/dev/home-config-server
+          image: harbor.yellowsunn.com:80/dev/home-config-server
