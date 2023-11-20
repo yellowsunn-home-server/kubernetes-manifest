@@ -4,18 +4,18 @@ namePrefix: dev-
 commonLabels:
   app: home-config-server
 resources:
-  - ../base
+- ../base
 patches:
-  - path: deployment.yaml
-    target:
-      group: apps
-      version: v1
-      kind: Deployment
-  - path: hpa.yaml
-    target:
-      group: autoscaling
-      version: v2
-      kind: HorizontalPodAutoscaler
+- path: deployment.yaml
+  target:
+    group: apps
+    kind: Deployment
+    version: v1
+- path: hpa.yaml
+  target:
+    group: autoscaling
+    kind: HorizontalPodAutoscaler
+    version: v2
 images:
-  - name: harbor.yellowsunn.com:80/dev/home-config-server
-    newTag: "20231120224110"
+- name: harbor.yellowsunn.com:80/dev/home-config-server
+  newTag: "20231120230519"
