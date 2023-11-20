@@ -18,4 +18,4 @@ patches:
       kind: HorizontalPodAutoscaler
 images:
   - name: harbor.yellowsunn.com:80/dev/home-config-server
-    newTag: "20231120215617"
+    newTag: "20231120220239"
