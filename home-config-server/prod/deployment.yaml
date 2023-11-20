@@ -10,3 +10,10 @@ spec:
       containers:
         - name: home-config-server
           image: harbor.yellowsunn.com:80/prod/home-config-server
+          resources:
+            requests:
+              cpu: 100m
+              memory: 0.5Gi
+            limits:
+              cpu: 300m
+              memory: 1Gi
