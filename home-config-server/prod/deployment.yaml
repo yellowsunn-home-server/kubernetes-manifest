@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home-config-server
+spec:
+  template:
+    metadata:
+      name: home-config-server
+    spec:
+      containers:
+        - name: home-config-server
+          image: harbor.yellowsunn.com/prod/home-config-server

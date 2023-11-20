@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namePrefix: dev-
+commonLabels:
+  app: home-config-server
+resources:
+  - ../base
+patches:
+  - path: deployment.yaml
+    target:
+      group: apps
+      version: v1
+      kind: Deployment
+  - path: hpa.yaml
+    target:
+      group: autoscaling
+      version: v2
+      kind: HorizontalPodAutoscaler
+images:
+  - name: harbor.yellowsunn.com/dev/home-config-server
+    newTag: "20231119232815"
