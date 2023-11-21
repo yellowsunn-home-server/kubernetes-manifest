@@ -10,3 +10,10 @@ spec:
       containers:
         - name: home-config-server
           image: harbor.yellowsunn.com:80/dev/home-config-server
+          env:
+            - name: JAVA_TOOL_OPTIONS
+              value: >-
+                -javaagent:/pinpoint-agent/pinpoint-bootstrap.jar
+                -Dpinpoint.applicationName=DEV-HOME-CONFIG-SERVER
+                -Dpinpoint.agentId=devhomeconfig
+                -Dpinpoint.profiler.profiles.active=release
