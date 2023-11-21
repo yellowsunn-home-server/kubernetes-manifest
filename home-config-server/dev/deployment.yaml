@@ -17,3 +17,10 @@ spec:
                 -Dpinpoint.applicationName=DEV-HOME-CONFIG-SERVER
                 -Dpinpoint.agentId=devhomeconfig
                 -Dpinpoint.profiler.profiles.active=release
+          volumeMounts:
+            - mountPath: /logs
+              name: logback
+      volumes:
+        - name: logback
+          hostPath:
+            path: /var/log/logback/dev/home-config-server
