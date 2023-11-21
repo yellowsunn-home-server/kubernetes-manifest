@@ -18,4 +18,4 @@ patches:
     version: v2
 images:
 - name: harbor.yellowsunn.com:80/dev/home-config-server
-  newTag: "20231121220537"
+  newTag: "20231121232222"
