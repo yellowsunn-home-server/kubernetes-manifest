@@ -37,6 +37,7 @@ spec:
               port: 8080
             initialDelaySeconds: 50
             periodSeconds: 20
+            failureThreshold: 6
           livenessProbe:
             httpGet:
               scheme: HTTP
