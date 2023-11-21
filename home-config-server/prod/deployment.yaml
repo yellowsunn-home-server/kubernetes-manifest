@@ -17,3 +17,17 @@ spec:
             limits:
               cpu: 300m
               memory: 1Gi
+          env:
+            - name: JAVA_TOOL_OPTIONS
+              value: >-
+                -javaagent:/pinpoint-agent/pinpoint-bootstrap.jar
+                -Dpinpoint.applicationName=PROD-HOME-CONFIG-SERVER
+                -Dpinpoint.agentId=prodhomeconfig
+                -Dpinpoint.profiler.profiles.active=release
+          volumeMounts:
+            - mountPath: /logs
+              name: logback
+      volumes:
+        - name: logback
+          hostPath:
+            path: /var/log/logback/prod/home-config-server
