@@ -15,6 +15,6 @@ spec:
             - name: KAFKA_CLUSTERS_0_NAME
               value: dev-kafka
             - name: KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS
-              value: 10.10.10.31:9092
+              value: dev-kafka.yellowsunn.com:9092
             - name: KAFKA_CLUSTERS_0_ZOOKEEPER
-              value: 10.10.10.31:2181
+              value: dev-kafka.yellowsunn.com:2181
