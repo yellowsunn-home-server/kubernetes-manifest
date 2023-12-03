@@ -21,12 +21,12 @@ data:
     
     <match logback>
       @type elasticsearch
-      host 10.10.10.27
+      host elasticsearch.yellowsunn.com
       port 9200
       <buffer>
         @type memory
-        timekey 3s
+        timekey 5s
         timekey_wait 0s
-        flush_interval 3s
+        flush_interval 5s
       </buffer>
     </match>
