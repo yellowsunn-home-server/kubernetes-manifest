@@ -3,7 +3,7 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: home-config-server
 spec:
-  maxReplicas: 2
+  maxReplicas: 1
   minReplicas: 1
   metrics:
     - type: Resource
