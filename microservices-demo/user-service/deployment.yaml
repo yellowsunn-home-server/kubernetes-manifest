@@ -22,17 +22,17 @@ spec:
           imagePullPolicy: IfNotPresent
           resources:
             requests:
-              cpu: 50m
+              cpu: 200m
               memory: 0.5Gi
             limits:
-              cpu: 50m
+              cpu: 200m
               memory: 0.5Gi
           startupProbe:
             httpGet:
               scheme: HTTP
               path: /actuator/health
               port: 8080
-            initialDelaySeconds: 60
+            initialDelaySeconds: 90
             periodSeconds: 20
             failureThreshold: 5
           livenessProbe:
