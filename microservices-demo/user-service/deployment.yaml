@@ -32,8 +32,9 @@ spec:
               scheme: HTTP
               path: /actuator/health
               port: 8080
-            initialDelaySeconds: 40
+            initialDelaySeconds: 60
             periodSeconds: 20
+            failureThreshold: 5
           livenessProbe:
             httpGet:
               scheme: HTTP
