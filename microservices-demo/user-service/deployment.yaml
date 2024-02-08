@@ -20,13 +20,13 @@ spec:
         - name: msa-demo-user-service
           image: harbor.yellowsunn.com:80/dev/msa-demo-user-service
           imagePullPolicy: IfNotPresent
-          resources:
-            requests:
-              cpu: 200m
-              memory: 0.5Gi
-            limits:
-              cpu: 200m
-              memory: 0.5Gi
+          # resources:
+          #   requests:
+          #     cpu: 200m
+          #     memory: 0.5Gi
+          #   limits:
+          #     cpu: 200m
+          #     memory: 0.5Gi
           startupProbe:
             httpGet:
               scheme: HTTP
