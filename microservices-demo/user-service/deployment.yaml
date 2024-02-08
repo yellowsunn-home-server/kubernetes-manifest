@@ -18,7 +18,7 @@ spec:
         - name: harbor-auth
       containers:
         - name: msa-demo-user-service
-          image: harbor.yellowsunn.com:80/dev/msa-demo-msa-demo-user-service
+          image: harbor.yellowsunn.com:80/dev/msa-demo-user-service
           imagePullPolicy: IfNotPresent
           resources:
             requests:
