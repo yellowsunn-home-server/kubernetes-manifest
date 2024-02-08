@@ -3,9 +3,9 @@ kind: Kustomization
 commonLabels:
   app: msa-demo-apigateway-service
 resources:
-  - deployment.yaml
-  - service.yaml
-  - hpa.yaml
+- deployment.yaml
+- service.yaml
+- hpa.yaml
 images:
 - name: harbor.yellowsunn.com:80/dev/msa-demo-apigateway-service
-  newTag: "20240205004538"
+  newTag: "20240208155858"
