@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: msa-demo-user-service
+  name: msa-demo-apigateway-service
 spec:
   revisionHistoryLimit: 5
   strategy:
@@ -11,14 +11,14 @@ spec:
       maxUnavailable: 1
   template:
     metadata:
-      name: msa-demo-user-service
+      name: msa-demo-apigateway-service
     spec:
       restartPolicy: Always
       imagePullSecrets:
         - name: harbor-auth
       containers:
-        - name: msa-demo-user-service
-          image: harbor.yellowsunn.com:80/dev/msa-demo-msa-demo-user-service
+        - name: msa-demo-apigateway-service
+          image: harbor.yellowsunn.com:80/dev/msa-demo-msa-demo-apigateway-service
           imagePullPolicy: IfNotPresent
           resources:
             requests:
